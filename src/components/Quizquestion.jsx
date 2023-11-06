@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function QuizQuestion({ question, options, answer, onNextQuestion, questionNumber, totalQuestions }) {
+function QuizQuestion({ question, options, answer, onNextQuestion, questionNumber, totalQuestions, resetTimer }) {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleOptionChange = (option) => {
@@ -16,6 +16,7 @@ function QuizQuestion({ question, options, answer, onNextQuestion, questionNumbe
     const isCorrect = selectedOption === answer;
     onNextQuestion(isCorrect);
     setSelectedOption('');
+    resetTimer();
   };
 
   return (

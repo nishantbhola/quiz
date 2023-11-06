@@ -55,6 +55,14 @@ function Question() {
       },
     ];
 
+
+    const [resetTimer, setResetTimer] = useState(false);
+
+    const handleTimerReset = () => {
+      setResetTimer(!resetTimer);
+    };
+  
+
   const [questions, setQuestions] = useState(initialQuestions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -99,7 +107,7 @@ function Question() {
       
       ) : (
         <div>
-            <Timer onTimeExpired={handleNextQuestion}/>
+            <Timer onTimeExpired={handleNextQuestion} resetTimer={resetTimer} />
           <QuizQuestion
             question={questions[currentQuestionIndex].question}
             options={questions[currentQuestionIndex].options}
@@ -107,6 +115,7 @@ function Question() {
             onNextQuestion={handleNextQuestion}
             questionNumber={currentQuestionIndex + 1} 
             totalQuestions={questions.length}
+            resetTimer={handleTimerReset} 
           />
         </div>
       )}
